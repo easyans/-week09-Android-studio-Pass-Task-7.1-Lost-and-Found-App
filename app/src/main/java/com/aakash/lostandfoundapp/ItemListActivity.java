@@ -30,7 +30,7 @@ public class ItemListActivity extends AppCompatActivity {
         btnLost   = findViewById(R.id.btnLost);
         btnFound  = findViewById(R.id.btnFound);
 
-        // Filter button clicks
+        // This is my Filter button which can be clickable and used in my app.
         btnAll.setOnClickListener(v -> {
             selectedType = "All";
             updateButtonStyles();
@@ -49,7 +49,7 @@ public class ItemListActivity extends AppCompatActivity {
             applyFilter();
         });
 
-        // Tap item → detail screen
+        // This for the tap on item that takes us on to the details screen of the lost item.
         listView.setOnItemClickListener((parent, view, position, id) -> {
             LostFoundItem item = currentList.get(position);
             Intent intent = new Intent(this, ItemDetailActivity.class);
@@ -57,13 +57,11 @@ public class ItemListActivity extends AppCompatActivity {
             startActivity(intent);
         });
     }
-
     @Override
     protected void onResume() {
         super.onResume();
         applyFilter();
     }
-
     private void applyFilter() {
         List<LostFoundItem> allItems = dbHelper.getAllItems();
 
@@ -79,17 +77,13 @@ public class ItemListActivity extends AppCompatActivity {
         }
         loadList();
     }
-
     private void updateButtonStyles() {
-        // Reset all to grey
         btnAll.setBackgroundTintList(
                 android.content.res.ColorStateList.valueOf(android.graphics.Color.parseColor("#AAAAAA")));
         btnLost.setBackgroundTintList(
                 android.content.res.ColorStateList.valueOf(android.graphics.Color.parseColor("#AAAAAA")));
         btnFound.setBackgroundTintList(
                 android.content.res.ColorStateList.valueOf(android.graphics.Color.parseColor("#AAAAAA")));
-
-        // Highlight the active button
         switch (selectedType) {
             case "All":
                 btnAll.setBackgroundTintList(
@@ -105,7 +99,6 @@ public class ItemListActivity extends AppCompatActivity {
                 break;
         }
     }
-
     private void loadList() {
         ArrayAdapter<LostFoundItem> adapter = new ArrayAdapter<LostFoundItem>(
                 this, R.layout.list_item, currentList) {

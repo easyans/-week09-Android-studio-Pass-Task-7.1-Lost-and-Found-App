@@ -11,10 +11,10 @@ public class LostFoundItem {
     private String category;
     private String imagePath;
     private String timestamp;
+    private double lat;
+    private double lng;
 
     public LostFoundItem() {}
-
-    // Getters
     public int getId()            { return id; }
     public String getType()       { return type; }
     public String getName()       { return name; }
@@ -25,8 +25,9 @@ public class LostFoundItem {
     public String getCategory()   { return category; }
     public String getImagePath()  { return imagePath; }
     public String getTimestamp()  { return timestamp; }
+    public double getLat()        { return lat; }
+    public double getLng()        { return lng; }
 
-    // Setters
     public void setId(int id)                   { this.id = id; }
     public void setType(String type)            { this.type = type; }
     public void setName(String name)            { this.name = name; }
@@ -37,8 +38,9 @@ public class LostFoundItem {
     public void setCategory(String category)    { this.category = category; }
     public void setImagePath(String imagePath)  { this.imagePath = imagePath; }
     public void setTimestamp(String timestamp)  { this.timestamp = timestamp; }
+    public void setLat(double lat)              { this.lat = lat; }
+    public void setLng(double lng)              { this.lng = lng; }
 
-    // For display in list
     public String getSummary() {
         return type + " " + category + " – " + description;
     }

@@ -14,11 +14,15 @@ public class MainActivity extends AppCompatActivity {
 
         Button btnCreate = findViewById(R.id.btnCreateAdvert);
         Button btnShow   = findViewById(R.id.btnShowItems);
+        Button btnMap    = findViewById(R.id.btnShowMap);
 
         btnCreate.setOnClickListener(v ->
                 startActivity(new Intent(this, CreateAdvertActivity.class)));
 
         btnShow.setOnClickListener(v ->
                 startActivity(new Intent(this, ItemListActivity.class)));
+
+        btnMap.setOnClickListener(v ->
+                startActivity(new Intent(this, MapActivity.class)));
     }
 }

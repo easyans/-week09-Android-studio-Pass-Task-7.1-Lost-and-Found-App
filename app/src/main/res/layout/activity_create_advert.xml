@@ -72,7 +72,17 @@
         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
             android:text="Location:" android:textStyle="bold"/>
         <EditText android:id="@+id/etLocation" android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:hint="Where was it lost/found?"
+            android:layout_height="wrap_content"
+            android:hint="Search location or use GPS"
+            android:layout_marginBottom="8dp"/>
+
+        <!-- Get Current Location Button -->
+        <Button android:id="@+id/btnGetLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="GET CURRENT LOCATION"
+            android:backgroundTint="#777777"
+            android:textColor="#FFFFFF"
             android:layout_marginBottom="16dp"/>
 
         <!-- Image Upload -->

@@ -6,6 +6,9 @@
         android:maxSdkVersion="32"/>
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES"/>
     <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
@@ -17,6 +20,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LostAndFoundApp"
         tools:targetApi="31">
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDWIJrsL576XLes943ACEbX0DmXOjmNsiU"/>
 
         <activity
             android:name=".MainActivity"
@@ -30,10 +37,11 @@
         <activity android:name=".CreateAdvertActivity" android:exported="false"/>
         <activity android:name=".ItemListActivity" android:exported="false"/>
         <activity android:name=".ItemDetailActivity" android:exported="false"/>
+        <activity android:name=".MapActivity" android:exported="false"/>
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.example.lostandfoundapp.fileprovider"
+            android:authorities="com.aakash.lostandfoundapp.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data

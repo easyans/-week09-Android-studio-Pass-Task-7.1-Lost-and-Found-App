@@ -12,8 +12,9 @@ import java.util.List;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "lostandfound.db";
-    private static final int DATABASE_VERSION = 1;
-    public static final String TABLE_ITEMS = "items";
+    private static final int DATABASE_VERSION = 2;
+
+    public static final String TABLE_ITEMS  = "items";
     public static final String COL_ID       = "id";
     public static final String COL_TYPE     = "post_type";
     public static final String COL_NAME     = "name";
@@ -24,6 +25,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COL_CATEGORY = "category";
     public static final String COL_IMAGE    = "image_path";
     public static final String COL_TIMESTAMP= "timestamp";
+    public static final String COL_LAT      = "latitude";
+    public static final String COL_LNG      = "longitude";
 
     private static final String CREATE_TABLE =
             "CREATE TABLE " + TABLE_ITEMS + " (" +
@@ -36,6 +39,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     COL_LOCATION  + " TEXT, " +
                     COL_CATEGORY  + " TEXT, " +
                     COL_IMAGE     + " TEXT, " +
+                    COL_LAT       + " REAL DEFAULT 0.0, " +
+                    COL_LNG       + " REAL DEFAULT 0.0, " +
                     COL_TIMESTAMP + " DATETIME DEFAULT CURRENT_TIMESTAMP" +
                     ")";
 
@@ -54,9 +59,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    // INSERT
     public long insertItem(String type, String name, String phone, String desc,
-                           String date, String location, String category, String imagePath) {
+                           String date, String location, String category,
+                           String imagePath, double lat, double lng) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put(COL_TYPE,     type);
@@ -67,12 +72,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cv.put(COL_LOCATION, location);
         cv.put(COL_CATEGORY, category);
         cv.put(COL_IMAGE,    imagePath);
+        cv.put(COL_LAT,      lat);
+        cv.put(COL_LNG,      lng);
         long id = db.insert(TABLE_ITEMS, null, cv);
         db.close();
         return id;
     }
 
-    // GET ALL
     public List<LostFoundItem> getAllItems() {
         List<LostFoundItem> list = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
@@ -86,7 +92,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return list;
     }
 
-    // GET BY CATEGORY FILTER
     public List<LostFoundItem> getItemsByCategory(String category) {
         List<LostFoundItem> list = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
@@ -101,7 +106,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return list;
     }
 
-    // GET BY ID
     public LostFoundItem getItemById(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.query(TABLE_ITEMS, null,
@@ -114,7 +118,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return item;
     }
 
-    // DELETE
     public void deleteItem(int id) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_ITEMS, COL_ID + "=?", new String[]{String.valueOf(id)});
@@ -133,6 +136,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         item.setCategory(cursor.getString(cursor.getColumnIndexOrThrow(COL_CATEGORY)));
         item.setImagePath(cursor.getString(cursor.getColumnIndexOrThrow(COL_IMAGE)));
         item.setTimestamp(cursor.getString(cursor.getColumnIndexOrThrow(COL_TIMESTAMP)));
+        item.setLat(cursor.getDouble(cursor.getColumnIndexOrThrow(COL_LAT)));
+        item.setLng(cursor.getDouble(cursor.getColumnIndexOrThrow(COL_LNG)));
         return item;
     }
 }

@@ -14,44 +14,43 @@
         android:gravity="center"
         android:padding="20dp"/>
 
-    <!-- Lost / Found filter buttons -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:orientation="horizontal"
-        android:padding="24dp"
-        android:gravity="center">
+        android:padding="34dp">
 
         <Button
             android:id="@+id/btnAll"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="All"
             android:layout_marginEnd="4dp"
+            android:layout_weight="1"
             android:backgroundTint="#555555"
-            android:textColor="#FFFFFF"/>
+            android:text="All"
+            android:textColor="#FFFFFF" />
 
         <Button
             android:id="@+id/btnLost"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Lost"
             android:layout_marginStart="4dp"
             android:layout_marginEnd="4dp"
+            android:layout_weight="1"
             android:backgroundTint="#AAAAAA"
-            android:textColor="#FFFFFF"/>
+            android:text="Lost"
+            android:textColor="#FFFFFF" />
 
         <Button
             android:id="@+id/btnFound"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Found"
             android:layout_marginStart="4dp"
+            android:layout_weight="1"
             android:backgroundTint="#AAAAAA"
-            android:textColor="#FFFFFF"/>
+            android:text="Found"
+            android:textColor="#FFFFFF" />
 
     </LinearLayout>
 

@@ -24,7 +24,6 @@ public class ItemDetailActivity extends AppCompatActivity {
         LostFoundItem item = dbHelper.getItemById(itemId);
         if (item == null) { finish(); return; }
 
-        // Populate views
         ((TextView) findViewById(R.id.tvDetailType))
                 .setText(item.getType() + " Item");
         ((TextView) findViewById(R.id.tvDetailCategory))
@@ -47,7 +46,6 @@ public class ItemDetailActivity extends AppCompatActivity {
             Bitmap bmp = BitmapFactory.decodeFile(item.getImagePath());
             if (bmp != null) imgDetail.setImageBitmap(bmp);
         }
-        // Remove button
         findViewById(R.id.btnRemove).setOnClickListener(v -> {
             dbHelper.deleteItem(itemId);
             Toast.makeText(this, "Advert removed", Toast.LENGTH_SHORT).show();
